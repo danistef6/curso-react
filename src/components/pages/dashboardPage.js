@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link } from 'react-router-dom';
+import { connect } from 'react-redux'
 
 class Dashboard extends React.Component {
     state = {}
@@ -8,10 +9,18 @@ class Dashboard extends React.Component {
         return (
             <div>
                 <h1> Dashboard </h1>
-                <Link to="/detail"> go to detail page </Link>
+                <Link to="/detail"> Detail page </Link>
+                /
+                <Link to="/state"> State page </Link>
+                <br/>
+                <h3>likes from redux : {this.props.likes}</h3>
             </div>
         );
     }
 }
 
-export default Dashboard;
+const mapStateToProps = (state) =>({
+    likes : state.Character.likes
+})
+
+export default connect(mapStateToProps , {})(Dashboard);
